@@ -31,13 +31,13 @@ def login_view(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            if user is not None and user.is_admin:
+            if user is not None and user.is_enseignant:
                 login(request, user)
                 return redirect('adminpage')
-            elif user is not None and user.is_customer:
+            elif user is not None and user.is_etudiant:
                 login(request, user)
                 return redirect('customer')
-            elif user is not None and user.is_employee:
+            elif user is not None and user.is_entreprise:
                 login(request, user)
                 return redirect('employee')
             else:
